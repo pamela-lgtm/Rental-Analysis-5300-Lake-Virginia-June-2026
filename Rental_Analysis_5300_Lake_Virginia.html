@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Market Analysis — 5300 Lake Virginia St</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#008C82;
+    --teal-deep:#046a62;
+    --gold:#D4AF50;
+    --gold-soft:#e7d4a0;
+    --charcoal:#1A1A1A;
+    --ink:#2b2b2b;
+    --ivory:#FAF7F0;
+    --paper:#fffdf8;
+    --line:#e6dfce;
+    --muted:#6f6a5e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-font-smoothing:antialiased;}
+  body{
+    font-family:'Jost',sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(0,140,130,.06), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(212,175,80,.08), transparent 55%),
+      var(--ivory);
+    line-height:1.6;
+    font-weight:300;
+    padding:40px 20px;
+  }
+  .sheet{
+    max-width:860px;
+    margin:0 auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    box-shadow:0 30px 80px -40px rgba(26,26,26,.35);
+    position:relative;
+    overflow:hidden;
+  }
+  .sheet::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:6px;
+    background:linear-gradient(90deg,var(--teal) 0%,var(--teal) 60%,var(--gold) 60%,var(--gold) 100%);
+  }
+
+  /* Header */
+  .masthead{
+    padding:54px 56px 30px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .wordmark{
+    font-family:'Playfair Display',serif;
+    font-size:30px;letter-spacing:.16em;
+    color:var(--charcoal);font-weight:600;
+    text-transform:uppercase;
+  }
+  .wordmark span{color:var(--teal);}
+  .tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:16px;color:var(--muted);
+    margin-top:6px;letter-spacing:.02em;
+  }
+  .rule{
+    width:54px;height:2px;background:var(--gold);
+    margin:20px auto 0;
+  }
+  .doc-type{
+    margin-top:18px;
+    font-size:12px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--teal-deep);font-weight:500;
+  }
+  .doc-title{
+    font-family:'Playfair Display',serif;
+    font-size:26px;color:var(--charcoal);font-weight:600;
+    margin-top:8px;letter-spacing:.01em;
+  }
+  .doc-meta{
+    font-size:12.5px;color:var(--muted);margin-top:10px;letter-spacing:.04em;
+  }
+
+  .body{padding:14px 56px 40px;}
+
+  section{padding:26px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-family:'Playfair Display',serif;
+    font-size:19px;color:var(--teal-deep);font-weight:600;
+    letter-spacing:.01em;margin-bottom:14px;
+    display:flex;align-items:center;gap:12px;
+  }
+  h2::before{
+    content:"";width:9px;height:9px;background:var(--gold);
+    transform:rotate(45deg);flex:none;
+  }
+  p{margin-bottom:12px;font-size:14.5px;}
+  strong{font-weight:600;color:var(--charcoal);}
+
+  /* Subject card */
+  .subject{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:0;
+    border:1px solid var(--line);background:#fff;
+  }
+  .subject .left{padding:24px 26px;border-right:1px solid var(--line);}
+  .subject .addr{
+    font-family:'Playfair Display',serif;font-size:22px;
+    color:var(--charcoal);font-weight:600;line-height:1.25;
+  }
+  .subject .loc{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.03em;}
+  .badge{
+    display:inline-block;margin-top:14px;padding:5px 13px;
+    background:rgba(0,140,130,.08);color:var(--teal-deep);
+    border:1px solid rgba(0,140,130,.25);
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  }
+  .specs{padding:24px 26px;display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;align-content:center;}
+  .spec .n{font-family:'Playfair Display',serif;font-size:22px;color:var(--teal);font-weight:600;}
+  .spec .l{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+
+  /* Recommendation band */
+  .reco{
+    background:linear-gradient(135deg,var(--teal) 0%,var(--teal-deep) 100%);
+    color:#fff;padding:30px 32px;margin:6px 0 0;
+    display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .reco::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;
+    border:1px solid rgba(212,175,80,.4);transform:rotate(45deg);
+  }
+  .reco .price{
+    font-family:'Playfair Display',serif;font-size:46px;font-weight:700;
+    line-height:1;color:#fff;
+  }
+  .reco .price small{display:block;font-size:12px;font-weight:400;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold-soft);margin-top:8px;font-family:'Jost',sans-serif;}
+  .reco .detail{font-size:14px;line-height:1.7;color:rgba(255,255,255,.92);}
+  .reco .detail b{color:var(--gold-soft);font-weight:600;}
+
+  .pill-row{display:flex;gap:0;border:1px solid var(--line);margin-top:0;}
+  .pill{flex:1;text-align:center;padding:16px 8px;border-right:1px solid var(--line);background:#fff;}
+  .pill:last-child{border-right:none;}
+  .pill .v{font-family:'Playfair Display',serif;font-size:20px;color:var(--charcoal);font-weight:600;}
+  .pill .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px;}
+  thead th{
+    background:var(--charcoal);color:#fff;font-weight:500;
+    padding:10px 8px;text-align:left;font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  thead th.num{text-align:right;}
+  tbody td{padding:9px 8px;border-bottom:1px solid var(--line);color:var(--ink);}
+  tbody td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tbody tr:nth-child(even){background:#faf8f2;}
+  .hi{color:var(--teal-deep);font-weight:600;}
+  .key-row{background:rgba(212,175,80,.14)!important;}
+  .key-row td{font-weight:500;}
+  .tag{font-size:10px;color:var(--muted);}
+  caption{caption-side:bottom;text-align:left;font-size:11px;color:var(--muted);
+    margin-top:8px;font-style:italic;}
+
+  /* Distance strip */
+  .geo{margin-top:6px;}
+  .geo-bar{display:flex;flex-direction:column;gap:7px;margin-top:6px;}
+  .geo-item{display:grid;grid-template-columns:230px 1fr 56px;align-items:center;gap:12px;font-size:12.5px;}
+  .geo-item .name{color:var(--ink);}
+  .track{height:8px;background:#efe9da;border-radius:6px;overflow:hidden;position:relative;}
+  .track i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:6px;}
+  .geo-item .mi{text-align:right;font-variant-numeric:tabular-nums;color:var(--teal-deep);font-weight:600;}
+  .geo-note{font-size:12px;color:var(--muted);margin-top:12px;}
+  .geo-note b{color:var(--teal-deep);}
+
+  .callout{
+    background:rgba(212,175,80,.09);border-left:3px solid var(--gold);
+    padding:18px 22px;font-family:'Cormorant Garamond',serif;
+    font-size:17px;line-height:1.65;color:var(--charcoal);font-style:italic;
+  }
+
+  ul.clean{list-style:none;margin:4px 0 0;}
+  ul.clean li{padding:5px 0 5px 22px;position:relative;font-size:14px;}
+  ul.clean li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;
+    background:var(--teal);transform:rotate(45deg);}
+
+  footer{
+    background:var(--charcoal);color:#cfcabd;padding:30px 56px;font-size:11.5px;line-height:1.7;
+  }
+  footer .sig{font-family:'Playfair Display',serif;font-size:18px;color:#fff;margin-bottom:2px;}
+  footer .sig span{color:var(--gold);}
+  footer .role{color:var(--gold-soft);font-size:12px;letter-spacing:.04em;margin-bottom:14px;}
+  footer .disclaimer{color:#8d887c;font-size:10.5px;border-top:1px solid #333;padding-top:14px;margin-top:14px;}
+
+  .fade{opacity:0;transform:translateY(14px);animation:rise .8s ease forwards;}
+  .fade:nth-child(2){animation-delay:.08s;}
+  .fade:nth-child(3){animation-delay:.16s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media(max-width:680px){
+    .body,.masthead,footer{padding-left:24px;padding-right:24px;}
+    .subject{grid-template-columns:1fr;}
+    .subject .left{border-right:none;border-bottom:1px solid var(--line);}
+    .reco{grid-template-columns:1fr;gap:16px;text-align:left;}
+    .geo-item{grid-template-columns:120px 1fr 44px;}
+  }
+  @media print{
+    body{background:#fff;padding:0;}
+    .sheet{box-shadow:none;border:none;max-width:100%;}
+    .fade{animation:none;opacity:1;transform:none;}
+    .reco{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    thead th,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    section{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead fade">
+    <div class="wordmark">Verandah <span>Properties</span></div>
+    <div class="tagline">Curating Lake Nona's Finest Rental Portfolio</div>
+    <div class="rule"></div>
+    <div class="doc-type">Rental Market Analysis</div>
+    <div class="doc-title">5300 Lake Virginia Street</div>
+    <div class="doc-meta">Winter Garden, FL 34787 &nbsp;•&nbsp; Prepared June 6, 2026 &nbsp;•&nbsp; Hamlin / Horizon West</div>
+  </div>
+
+  <div class="body">
+
+    <section class="fade">
+      <h2>Subject Property</h2>
+      <div class="subject">
+        <div class="left">
+          <div class="addr">5300 Lake Virginia St</div>
+          <div class="loc">Winter Garden, FL 34787 — Hamlin Meadows, Horizon West</div>
+          <span class="badge">Detached Single-Family</span>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="n">3</div><div class="l">Bedrooms</div></div>
+          <div class="spec"><div class="n">2</div><div class="l">Bathrooms</div></div>
+          <div class="spec"><div class="n">1,771</div><div class="l">Heated Sq Ft</div></div>
+          <div class="spec"><div class="n">2022</div><div class="l">Year Built</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fade">
+      <h2>Recommended Pricing</h2>
+      <div class="reco">
+        <div>
+          <div class="price">$2,850<small>Recommended List</small></div>
+        </div>
+        <div class="detail">
+          A defensible <b>floor of $2,750</b> protects downside, with a credible case to <b>test $2,895</b>.
+          This positions the home above the townhome median — justified by its detached, single-family
+          status — while staying beneath the <b>$2,900 ceiling</b> the neighborhood has already proven it will pay.
+        </div>
+      </div>
+      <div class="pill-row">
+        <div class="pill"><div class="v">$2,650</div><div class="k">Leased Median</div></div>
+        <div class="pill"><div class="v">$2,499–$2,900</div><div class="k">Leased Range</div></div>
+        <div class="pill"><div class="v">99.5%</div><div class="k">Avg Leased / List</div></div>
+        <div class="pill"><div class="v">&lt;30 days</div><div class="k">Typical Time to Lease</div></div>
+      </div>
+    </section>
+
+    <section class="fade">
+      <h2>The Single-Family Advantage</h2>
+      <p>
+        This analysis carries one important nuance worth understanding. The active and recently
+        leased rental inventory within a mile of the property is composed almost entirely of
+        <strong>newer attached townhomes</strong> — Silverleaf Oaks, Hamilton Gardens, and Hamlin Reserve.
+        Your home, by contrast, is a <strong>detached single-family residence</strong> of nearly identical
+        size, age, and bedroom count.
+      </p>
+      <p>
+        A detached home typically rents at a premium to an otherwise-comparable townhome — for the
+        privacy of no shared walls, a private yard, and a private garage. That premium generally
+        runs <strong>5–15%</strong>. The clearest evidence sits inside the data itself:
+      </p>
+      <ul class="clean">
+        <li><strong>16282 Merry Alley</strong> — a 1,770 sq ft townhome, essentially the same footprint as the subject — listed at $2,850 but leased at $2,650 (93% of list). This marks where the <em>townhome</em> market clears at this size, and establishes the subject's effective floor.</li>
+        <li><strong>6338 Hamlin Reserve Blvd</strong> — listed at $2,795 and leased <em>over asking</em> at $2,900 (103.8%), proving the immediate area will pay up for the right product.</li>
+      </ul>
+      <p>
+        One honest offset: the townhome comps carry a half-bath the subject does not (2.5 baths vs. 2.0).
+        The detached status, private lot, and garage more than compensate, but it tempers the very top of the range —
+        hence a recommended list at $2,850 rather than reaching for $2,900 out of the gate.
+      </p>
+    </section>
+
+    <section class="fade">
+      <h2>Owner Summary</h2>
+      <div class="callout">
+        "Because your home is a detached single-family residence, there are no exact same-product
+        comparables currently leasing nearby — the rental inventory within a mile is almost entirely
+        newer townhomes. We've used those as the market baseline, since they match your home in size,
+        age, and bedroom count and define what renters in this pocket are paying. A detached home of
+        equivalent size rents at a premium to an attached townhome. A near-identical 1,770 sq ft townhome
+        just leased at $2,650, and a detached home nearby leased over asking at $2,900 — together
+        supporting a price at the upper end of the range rather than the middle."
+      </div>
+    </section>
+
+    <section class="fade geo">
+      <h2>Comparable Proximity</h2>
+      <p>Every comparable used sits within <strong>1.1 miles</strong> of the subject property — well inside a 2-mile radius, all within the Hamlin / Horizon West corridor.</p>
+      <div class="geo-bar">
+        <div class="geo-item"><span class="name">Groveside Rd</span><span class="track"><i style="width:11%"></i></span><span class="mi">0.24 mi</span></div>
+        <div class="geo-item"><span class="name">Hamlin Reserve Blvd</span><span class="track"><i style="width:19%"></i></span><span class="mi">0.41 mi</span></div>
+        <div class="geo-item"><span class="name">Elfin Herb Way — Hamilton Gardens</span><span class="track"><i style="width:31%"></i></span><span class="mi">0.69 mi</span></div>
+        <div class="geo-item"><span class="name">Blue Lily Way — Hamilton Gardens</span><span class="track"><i style="width:31%"></i></span><span class="mi">0.69 mi</span></div>
+        <div class="geo-item"><span class="name">Tabebuia Pkwy — Silverleaf Oaks</span><span class="track"><i style="width:48%"></i></span><span class="mi">1.05 mi</span></div>
+        <div class="geo-item"><span class="name">Bright Leaf Rd — Silverleaf Oaks</span><span class="track"><i style="width:50%"></i></span><span class="mi">1.09 mi</span></div>
+        <div class="geo-item"><span class="name">Breeze Filled Ln — Silverleaf Oaks</span><span class="track"><i style="width:50%"></i></span><span class="mi">1.10 mi</span></div>
+        <div class="geo-item"><span class="name">Merry Alley — Silverleaf Oaks</span><span class="track"><i style="width:51%"></i></span><span class="mi">1.11 mi</span></div>
+      </div>
+      <div class="geo-note">Bars scaled against a <b>2.0-mile</b> reference radius.</div>
+    </section>
+
+    <section class="fade">
+      <h2>Leased Comparables</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Address</th><th>Subdivision</th><th class="num">Yr</th>
+            <th class="num">Sq Ft</th><th class="num">Leased</th>
+            <th class="num">L/L</th><th class="num">Lease Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="key-row"><td>16282 Merry Aly <span class="tag">★ size match</span></td><td>Silverleaf Oaks at Hamlin</td><td class="num">2026</td><td class="num">1,770</td><td class="num">$2,650</td><td class="num">93.0%</td><td class="num">04/30/26</td></tr>
+          <tr class="key-row"><td>6338 Hamlin Reserve Blvd <span class="tag">★ ceiling</span></td><td>Hamlin Reserve</td><td class="num">2018</td><td class="num">1,742</td><td class="num hi">$2,900</td><td class="num">103.8%</td><td class="num">05/15/26</td></tr>
+          <tr><td>15262 Groveside Rd</td><td>—</td><td class="num">2025</td><td class="num">1,830</td><td class="num">$2,750</td><td class="num">100%</td><td class="num">03/02/26</td></tr>
+          <tr><td>6025 Blue Lily Way</td><td>Hamilton Gardens</td><td class="num">2020</td><td class="num">1,714</td><td class="num">$2,700</td><td class="num">100%</td><td class="num">04/28/26</td></tr>
+          <tr><td>16256 Bright Leaf Rd</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,790</td><td class="num">100%</td><td class="num">03/01/26</td></tr>
+          <tr><td>16373 Breeze Filled Ln</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,650</td><td class="num">100%</td><td class="num">03/27/26</td></tr>
+          <tr><td>6400 Tabebuia Pkwy</td><td>Silverleaf Oaks / Hamlin</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,650</td><td class="num">100%</td><td class="num">05/19/26</td></tr>
+          <tr><td>16264 Merry Aly</td><td>Silverleaf Oaks at Hamlin</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,620</td><td class="num">100%</td><td class="num">03/05/26</td></tr>
+          <tr><td>16268 Bright Leaf Rd</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,600</td><td class="num">100%</td><td class="num">03/01/26</td></tr>
+          <tr><td>16246 Merry Alley</td><td>Silverleaf Oaks at Hamlin</td><td class="num">2026</td><td class="num">1,683</td><td class="num">$2,600</td><td class="num">98.1%</td><td class="num">04/09/26</td></tr>
+          <tr><td>16258 Merry Aly</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,550</td><td class="num">100%</td><td class="num">03/30/26</td></tr>
+          <tr><td>6403 Breeze Filled Ln</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,500</td><td class="num">98.0%</td><td class="num">03/12/26</td></tr>
+          <tr><td>16270 Merry Aly</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,499</td><td class="num">100%</td><td class="num">04/15/26</td></tr>
+        </tbody>
+      </table>
+      <caption>13 leased comparables, all detached-equivalent townhome product unless noted. Source: Stellar MLS via CoreLogic, as of 6/6/2026.</caption>
+    </section>
+
+    <section class="fade">
+      <h2>Active Competition</h2>
+      <table>
+        <thead>
+          <tr><th>Address</th><th>Subdivision</th><th class="num">Yr</th><th class="num">Sq Ft</th><th class="num">List</th><th class="num">Days</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>6149 Elfin Herb Way</td><td>Hamilton Gardens</td><td class="num">2020</td><td class="num">1,714</td><td class="num">$2,800</td><td class="num">30</td></tr>
+          <tr><td>6131 Elfin Herb Way</td><td>Hamilton Gardens</td><td class="num">2020</td><td class="num">1,714</td><td class="num">$2,800</td><td class="num">12</td></tr>
+          <tr><td>6331 Breeze Filled Ln</td><td>Silverleaf Oaks</td><td class="num">2025</td><td class="num">1,683</td><td class="num">$2,650</td><td class="num">29</td></tr>
+        </tbody>
+      </table>
+      <caption>Current active listings represent the competing inventory at launch.</caption>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="sig">Pamela <span>Syvertson</span></div>
+    <div class="role">Owner &amp; Broker — Verandah Properties LLC</div>
+    Curating Lake Nona's Finest Rental Portfolio &nbsp;•&nbsp; Relationships, not transactions.
+    <div class="disclaimer">
+      This is an opinion of value or Comparative Market Analysis and should not be considered an appraisal.
+      In making any decision that relies upon this work, please note it has not followed the guidelines for
+      development of an appraisal contained in the Uniform Standards of Professional Appraisal Practice of the
+      Appraisal Foundation. Comparable data sourced from Stellar MLS as distributed by CoreLogic, current as of
+      June 6, 2026. Distances measured from the subject parcel center.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
